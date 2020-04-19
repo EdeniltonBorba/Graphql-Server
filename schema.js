@@ -2,7 +2,20 @@ const {
     GraphQLSchema,
     GraphQLObjectType,
     GraphQLString,
+    GraphQLInt,
 } = require('graphql');
+
+const CompanhiaType = new GraphQLObjectType({
+    name: 'Companhia',
+    fields: {
+        id: {
+            type: GraphQLInt
+        },
+        name: {
+            type: GraphQLString
+        }
+    }
+});
 
 
 module.exports = new GraphQLSchema({
@@ -10,9 +23,12 @@ module.exports = new GraphQLSchema({
         name: 'RootQueryType',
         fields: {
             companhia: {
-                type: GraphQLString,
+                type: CompanhiaType,
                 resolve() {
-                    return 'GoodWork';
+                    return {
+                        id: 123,
+                        name: 'GoodWork'
+                    };
                 },
             },
         },

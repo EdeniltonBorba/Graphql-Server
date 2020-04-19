@@ -6,7 +6,7 @@ const schema = require('./schema');
 const app = express();
 const PORT = 3000;
 
-app.use('./graphql', graphqlHTTP({
+app.use('/graphql', graphqlHTTP({
     schema: schema,
     graphiql: true
 }));
