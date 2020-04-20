@@ -4,6 +4,7 @@ const {
     GraphQLString,
     GraphQLInt,
     GraphQLList,
+    GraphQLNonNull,
 } = require('graphql');
 
 const Companhia = require('./orm/Companhia');
@@ -31,6 +32,19 @@ module.exports = new GraphQLSchema({
                     return Companhia.findAll();
                 },
             },
+            Companhia: {
+                type: CompanhiaType,
+                args: {
+                    id: {
+                        type: new GraphQLNonNull(GraphQLInt)
+                    }
+                },
+                resolve(parentValue, args) {
+                    console.log('parentValue', parentValue)
+                    console.log('args', args)
+                    return Companhia.findAll(args.id);
+                }
+            }
         },
     }),
 });
