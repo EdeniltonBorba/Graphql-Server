@@ -8,6 +8,7 @@ const {
 } = require('graphql');
 
 const Companhia = require('./orm/Companhia');
+const Api = require('./api/index.js');
 
 const ProdutoType = new GraphQLObjectType({
     name: 'Produto',
@@ -16,13 +17,14 @@ const ProdutoType = new GraphQLObjectType({
             type: GraphQLInt,
         },
         name: {
-            type: GraphQLString
+            type: GraphQLString,
         },
         CompanhiaId: {
-            type: GraphQLInt
+            type: GraphQLInt,
         }
     }
 });
+
 const CompanhiaType = new GraphQLObjectType({
     name: 'Companhia',
     fields: {
@@ -54,11 +56,11 @@ module.exports = new GraphQLSchema({
                     }
                 },
                 resolve(parentValue, args) {
-                    return Companhia.findAll(args.id);
+                    return Companhia.find(args.id);
                 }
             },
             produtos: {
-                type: ProdutoType,
+                type: new GraphQLList(ProdutoType),
                 resolve() {
                     return Api.findProdutos();
                 }
