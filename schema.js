@@ -33,6 +33,12 @@ const CompanhiaType = new GraphQLObjectType({
         },
         name: {
             type: GraphQLString
+        },
+        produtos: {
+            type: new GraphQLList(ProdutoType),
+            resolve(parentValue, args) {
+                return Api.findProdutosByCompanhiaId(parentValue.id);
+            }
         }
     }
 });
