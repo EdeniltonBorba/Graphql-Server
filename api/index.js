@@ -2,12 +2,12 @@ let produtos = [
     {
         id: 1,
         name: 'clear',
-        companhiaId: 1
+        CompanhiaId: 1
     },
     {
         id: 2,
         name: 'Handyman',
-        companhiaId: 1
+        CompanhiaId: 1
     },
 ];
 
