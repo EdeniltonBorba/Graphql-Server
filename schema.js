@@ -76,6 +76,17 @@ module.exports = new GraphQLSchema({
                 resolve() {
                     return Api.findProdutos();
                 }
+            },
+            produto: {
+                type: ProdutoType,
+                args: {
+                    id: {
+                        type: new GraphQLNonNull(GraphQLInt)
+                    }
+                },
+                resolve(parentValue, args) {
+                    return Api.findProduto(args.id);
+                }
             }
         },
     }),

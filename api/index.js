@@ -43,4 +43,12 @@ module.exports = {
             }, 300);
         });
     },
+    findProduto(id) {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve(
+                    produtos.find(produto => produto.id === id));
+            });
+        });
+    }
 };
