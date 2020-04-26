@@ -12,7 +12,7 @@ const Api = require('./api/index.js');
 
 const ProdutoType = new GraphQLObjectType({
     name: 'Produto',
-    fields: {
+    fields: () => ({
         id: {
             type: GraphQLInt,
         },
@@ -28,7 +28,7 @@ const ProdutoType = new GraphQLObjectType({
                 return Companhia.find(parentValue.CompanhiaId);
             }
         }
-    }
+    })
 });
 
 const CompanhiaType = new GraphQLObjectType({
