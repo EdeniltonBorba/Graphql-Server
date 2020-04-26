@@ -21,6 +21,12 @@ const ProdutoType = new GraphQLObjectType({
         },
         CompanhiaId: {
             type: GraphQLInt,
+        },
+        Companhia: {
+            type: CompanhiaType,
+            resolve(parentValue) {
+                return Companhia.find(parentValue.CompanhiaId);
+            }
         }
     }
 });
