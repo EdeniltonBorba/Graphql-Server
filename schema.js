@@ -46,6 +46,12 @@ const CompanhiaType = new GraphQLObjectType({
         name: {
             type: GraphQLString
         },
+        FundadaEm: {
+            type: GraphQLString
+        },
+        site: {
+            type: GraphQLString
+        },
         produtos: {
             type: new GraphQLList(ProdutoType),
             resolve(parentValue, args) {

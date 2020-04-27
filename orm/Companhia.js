@@ -1,15 +1,21 @@
 let companhias = [
     {
         id: 1,
-        name: 'GoodWork'
+        name: 'GoodWork',
+        FundadaEm: '27-04-2020',
+        site: 'https://goodwork.netlify.app/'
     },
     {
         id: 2,
-        name: 'Navio'
+        name: 'Navio',
+        FundadaEm: '26-04-2020',
+        site: 'https://github.com/EdeniltonBorba/Supermarket'
     },
     {
         id: 3,
-        name: 'Portfolio'
+        name: 'Portfolio',
+        FundadaEm: '25-04-2020',
+        site: 'https://edeniltonborba.netlify.app/'
     },
 ];
 
