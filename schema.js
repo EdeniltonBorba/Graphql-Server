@@ -19,6 +19,12 @@ const ProdutoType = new GraphQLObjectType({
         name: {
             type: GraphQLString,
         },
+        LancadoEm: {
+            type: GraphQLString
+        },
+        image: {
+            type: GraphQLString
+        },
         CompanhiaId: {
             type: GraphQLInt,
         },
