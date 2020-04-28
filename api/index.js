@@ -36,6 +36,8 @@ let produtos = [
     },
 ];
 
+let ultimoId = 5;
+
 module.exports = {
     findProdutos() {
         return new Promise((resolve, reject) => {
@@ -58,7 +60,20 @@ module.exports = {
             setTimeout(() => {
                 resolve(
                     produtos.find(produto => produto.id === id));
-            });
+            }, 300);
         });
+    },
+    createProduto(produto) {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                ultimoId = ultimoId + 1;
+                const novoProduto = {
+                    ...produto,
+                    id: ultimoId
+                };
+                produtos = produtos.concat([novoProduto]);
+                resolve(novoProduto);
+            }, 300);
+        })
     }
 };
