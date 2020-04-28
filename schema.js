@@ -135,17 +135,18 @@ module.exports = new GraphQLSchema({
                     //                  }
                     input: {
                         type: new GraphQLNonNull(CompanhiaInputType)
-                    },
-                    resolve(parentValue, args) {
-                        const { input } = args;
-                        return Companhia.create({
-                            name: input.name,
-                            FundadaEm: input.FundadaEm,
-                            site: input.site
-                        });
                     }
+                },
+                resolve(parentValue, args) {
+                    const { input } = args;
+                    return Companhia.create({
+                        name: input.name,
+                        FundadaEm: input.FundadaEm,
+                        site: input.site
+                    });
                 }
             }
         }
+
     })
 });
