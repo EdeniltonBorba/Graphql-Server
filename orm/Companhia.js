@@ -19,6 +19,8 @@ let companhias = [
     },
 ];
 
+let ultimoId = 3;
+
 module.exports = {
     findAll() {
         return new Promise((resolve, reject) => {
@@ -34,5 +36,18 @@ module.exports = {
                 resolve(aCompanhia);
             }, 300);
         });
+    },
+    create(companhia) {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                ultimoId = ultimoId + 1;
+                const novaCompanhia = {
+                    ...companhia,
+                    id: ultimoId
+                };
+                companhias = companhias.concat([novaCompanhia]);
+                resolve(novaCompanhia);
+            }, 300);
+        })
     }
 }
