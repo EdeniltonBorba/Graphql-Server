@@ -23,6 +23,9 @@ const ProdutoInputType = new GraphQLInputObjectType({
         image: {
             type: new GraphQLNonNull(GraphQLString)
         },
+        CompanhiaId: {
+            type: new GraphQLNonNull(GraphQLInt)
+        }
     }
 });
 
