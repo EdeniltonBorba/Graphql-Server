@@ -5,6 +5,7 @@ const {
     GraphQLInt,
     GraphQLList,
     GraphQLNonNull,
+    GraphQLInputObjectType,
 } = require('graphql');
 
 const Companhia = require('./orm/Companhia');
@@ -35,6 +36,21 @@ const ProdutoType = new GraphQLObjectType({
             }
         }
     })
+});
+
+const CompanhiaInputType = new GraphQLInputObjectType({
+    name: 'CompanhiaInput',
+    fields: {
+        name: {
+            type: new GraphQLNonNull(GraphQLString)
+        },
+        FundadaEm: {
+            type: new GraphQLNonNull(GraphQLString)
+        },
+        site: {
+            type: new GraphQLNonNull(GraphQLString)
+        },
+    }
 });
 
 const CompanhiaType = new GraphQLObjectType({
@@ -108,22 +124,26 @@ module.exports = new GraphQLSchema({
             adicionarCompanhia: {
                 type: CompanhiaType,
                 args: {
-                    name: {
-                        type: new GraphQLNonNull(GraphQLString)
+                    //                   name: {
+                    //                       type: new GraphQLNonNull(GraphQLString)
+                    //                    },
+                    //                   FundadaEm: {
+                    //                      type: new GraphQLNonNull(GraphQLString)
+                    //                  },
+                    //                  site: {
+                    //                      type: new GraphQLNonNull(GraphQLString)
+                    //                  }
+                    input: {
+                        type: new GraphQLNonNull(CompanhiaInputType)
                     },
-                    FundadaEm: {
-                        type: new GraphQLNonNull(GraphQLString)
-                    },
-                    site: {
-                        type: new GraphQLNonNull(GraphQLString)
+                    resolve(parentValue, args) {
+                        const { input } = args;
+                        return Companhia.create({
+                            name: input.name,
+                            FundadaEm: input.FundadaEm,
+                            site: input.site
+                        });
                     }
-                },
-                resolve(parentValue, args) {
-                    return Companhia.create({
-                        name: args.name,
-                        FundadaEm: args.FundadaEm,
-                        site: args.site
-                    });
                 }
             }
         }
