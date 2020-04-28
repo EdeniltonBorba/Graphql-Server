@@ -102,4 +102,30 @@ module.exports = new GraphQLSchema({
             }
         },
     }),
+    mutation: new GraphQLObjectType({
+        name: 'MutationType',
+        fields: {
+            adicionarCompanhia: {
+                type: CompanhiaType,
+                args: {
+                    name: {
+                        type: new GraphQLNonNull(GraphQLString)
+                    },
+                    FundadaEm: {
+                        type: new GraphQLNonNull(GraphQLString)
+                    },
+                    site: {
+                        type: new GraphQLNonNull(GraphQLString)
+                    }
+                },
+                resolve(parentValue, args) {
+                    return Companhia.create({
+                        name: args.name,
+                        FundadaEm: args.FundadaEm,
+                        site: args.site
+                    });
+                }
+            }
+        }
+    })
 });
