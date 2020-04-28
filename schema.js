@@ -11,6 +11,21 @@ const {
 const Companhia = require('./orm/Companhia');
 const Api = require('./api/index.js');
 
+const ProdutoInputType = new GraphQLInputObjectType({
+    name: 'ProdutoInput',
+    fields: {
+        name: {
+            type: new GraphQLNonNull(GraphQLString),
+        },
+        LancadoEm: {
+            type: new GraphQLNonNull(GraphQLString)
+        },
+        image: {
+            type: new GraphQLNonNull(GraphQLString)
+        },
+    }
+});
+
 const ProdutoType = new GraphQLObjectType({
     name: 'Produto',
     fields: () => ({
@@ -145,8 +160,18 @@ module.exports = new GraphQLSchema({
                         site: input.site
                     });
                 }
+            },
+            adicionarProduto: {
+                type: ProdutoType,
+                args: {
+                    input: {
+                        type: ProdutoInputType
+                    }
+                },
+                resolve(parentValue, args) {
+                    return Api.createProduto(args.input);
+                }
             }
         }
-
     })
 });
