@@ -158,7 +158,7 @@ module.exports = new GraphQLSchema({
                 resolve(parentValue, args) {
                     const { input } = args;
                     if (!(/^http/.test(input.site))) {
-                        console.log('Input')
+
                         throw new Error('Site tem que comecar com http');
                     }
                     return Companhia.create({
@@ -166,6 +166,17 @@ module.exports = new GraphQLSchema({
                         FundadaEm: input.FundadaEm,
                         site: input.site
                     });
+                }
+            },
+            removerCompanhia: {
+                type: CompanhiaType,
+                args: {
+                    id: {
+                        type: new GraphQLNonNull(GraphQLInt)
+                    }
+                },
+                resolve(parentValue, args) {
+                    return Companhia.destroy(args.id);
                 }
             },
             adicionarProduto: {

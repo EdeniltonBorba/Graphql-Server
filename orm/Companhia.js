@@ -49,5 +49,13 @@ module.exports = {
                 resolve(novaCompanhia);
             }, 300);
         })
+    },
+    destroy(companhiaId) {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                companhias = companhias.filter(companhia => companhia.id !== companhiaId);
+                resolve({});
+            }, 300);
+        })
     }
 }
